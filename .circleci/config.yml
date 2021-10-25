@@ -4,26 +4,47 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.3
 
 commands:
-  check_version:
+  check_version_latest:
     steps:
       - run:
           name: check version
           command: |
             aws --version
 
+  check_version_fix:
+    steps:
+      - run:
+          name: check version
+          command: |
+            aws --version
 jobs:
-  check_version:
+  check_version_latest:
     executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/install
       - check_version
 
+  check_version_fix:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/install:
+          version: 2.2.47
+      - check_version
+
 workflows:
   version: 2
-  release-workflow:
+  my-workflow:
     jobs:
-      - check_version:
+      - check_version_latest:
           filters:
             tags:
               only: /.*/
+
+      - check_version_fix:
+          filters:
+            tags:
+              only: /.*/
+          requires:
+            - check_version_latest
