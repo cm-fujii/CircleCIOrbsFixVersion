@@ -7,7 +7,6 @@ commands:
   check_version:
     steps:
       - run:
-          name: lint and unit test
           command: |
             aws --version
 
