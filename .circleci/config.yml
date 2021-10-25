@@ -2,52 +2,28 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@2.0.3
-  sam: circleci/aws-sam-serverless@3.1.0
 
 commands:
-  check_aws_version:
+  check_version:
     steps:
       - run:
           name: lint and unit test
           command: |
             aws --version
 
-  check_sam_version:
-    steps:
-      - run:
-          name: deploy
-          command: |
-            sam --version
-
 jobs:
-  check_aws_version:
+  check_version:
     executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/install
-      - check_aws_version
-
-  check_sam_version:
-    executor: sam/default
-    steps:
-      - checkout
-      - sam/install
-      - check_sam_version
+      - check_version
 
 workflows:
   version: 2
   release-workflow:
     jobs:
-      - check_aws_version:
+      - check_version:
           filters:
             tags:
               only: /.*/
-
-      - check_sam_version:
-          filters:
-            branches:
-              only: /.*/
-            tags:
-              only: /.*/
-          requires:
-            - check_aws_version
