@@ -17,7 +17,6 @@ commands:
       - run:
           name: deploy
           command: |
-            aws --version
             sam --version
 
 jobs:
