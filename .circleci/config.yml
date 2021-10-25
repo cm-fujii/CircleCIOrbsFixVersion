@@ -49,4 +49,4 @@ workflows:
             tags:
               only: /.*/
           requires:
-            - check_sam_version
+            - check_aws_version
