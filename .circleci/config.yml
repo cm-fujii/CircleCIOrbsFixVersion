@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - aws-cli/install
-      - check_version
+      - check_version_latest
 
   check_version_fix:
     executor: aws-cli/default
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - aws-cli/install:
           version: 2.2.47
-      - check_version
+      - check_version_fix
 
 workflows:
   version: 2
