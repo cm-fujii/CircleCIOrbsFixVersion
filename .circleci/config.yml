@@ -25,12 +25,14 @@ jobs:
     executor: aws-cli/default
     steps:
       - checkout
+      - aws-cli/install
       - check_aws_version
 
   check_sam_version:
     executor: sam/default
     steps:
       - checkout
+      - sam/install
       - check_sam_version
 
 workflows:
