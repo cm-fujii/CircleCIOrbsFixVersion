@@ -19,7 +19,7 @@ commands:
             aws --version
 jobs:
   check_version_latest:
-    executor: aws-cli/default
+    executor: sam-cli/default
     steps:
       - checkout
       - sam-cli/install
