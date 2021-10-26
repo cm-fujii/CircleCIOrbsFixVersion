@@ -9,14 +9,14 @@ commands:
       - run:
           name: check version
           command: |
-            aws --version
+            sam --version
 
   check_version_fix:
     steps:
       - run:
           name: check version
           command: |
-            aws --version
+            sam --version
 jobs:
   check_version_latest:
     executor: sam-cli/default
