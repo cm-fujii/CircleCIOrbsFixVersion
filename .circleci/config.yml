@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@2.0.3
+  sam-cli: circleci/aws-cli@3.1.0
 
 commands:
   check_version_latest:
@@ -22,15 +22,15 @@ jobs:
     executor: aws-cli/default
     steps:
       - checkout
-      - aws-cli/install
+      - sam-cli/install
       - check_version_latest
 
   check_version_fix:
-    executor: aws-cli/default
+    executor: sam-cli/default
     steps:
       - checkout
-      - aws-cli/install:
-          version: 2.2.47
+      - sam-cli/install:
+          version: v1.31.0
       - check_version_fix
 
 workflows:
