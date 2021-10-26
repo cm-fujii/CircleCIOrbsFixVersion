@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  sam-cli: circleci/aws-cli@3.1.0
+  sam-cli: circleci/aws-sam-serverless@3.1.0
 
 commands:
   check_version_latest:
